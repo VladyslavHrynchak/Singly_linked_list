@@ -6,9 +6,9 @@ using namespace std;
 int main()
 {
     Singly_linked_list<int> l1;
-    l1.push_back(2);
-    l1.push_back(3);
-    l1.push_back(4);
+    l1.push_front(2);
+    l1.push_front(3);
+    l1.push_front(4);
     l1.print();
     std::cout << std::endl;
 

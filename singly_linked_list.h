@@ -68,28 +68,20 @@ public:
         clear();
     }
 
-    void push_back(const T value_)
+    void push_front(const T value_)
     {
-        Node * temp = head;
         if(!head)
         {
             head = new Node();
             head->value = value_;
             head->next = nullptr;
-            temp = head;
-            return;
         }
-
-        while(temp)
+        else
         {
-            if(!temp->next)
-            {
-                temp->next = new Node();
-                temp->next->value = value_;
-                temp->next->next = nullptr;
-                return;
-            }
-            temp = temp->next;
+            Node *temp  = new Node;
+            temp->value = value_;
+            temp->next = head;
+            head = temp;
         }
     }
 
