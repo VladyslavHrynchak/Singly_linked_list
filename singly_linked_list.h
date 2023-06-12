@@ -48,7 +48,6 @@ public:
 
         }
         return *this;
-
     }
 
     Singly_linked_list& operator =(Singly_linked_list &&list)
@@ -68,7 +67,7 @@ public:
         clear();
     }
 
-    void push_front(const T value_)
+    void push_front(auto &&value_)
     {
         if(!head)
         {
@@ -93,7 +92,6 @@ public:
             std::cout << temp->value << " ";
             temp = temp->next;
         }
-
         std::cout << std::endl;
     }
 
@@ -101,39 +99,47 @@ public:
     {
         if(head)
         {
-            Node *deleted = head;
+            Node *temp = head;
             while(head)
             {
-                head = head->next;
-                delete deleted;
-                deleted = head;
+                temp = temp->next;
+                delete head;
+                head = temp;
             }
         }
     }
 
-    void remove(const int index)
+    T& front()
     {
-        int iter = 0;
-        Node *temp = head;
-        Node *prev = head;
-        while(temp)
+        return head->value;
+    }
+
+    T* begin()
+    {
+        return &head->value;
+    }
+
+    T* end()
+    {
+        if(head)
         {
-            if(iter == index)
+            Node *end = head;
+            while(head)
             {
-                if(iter == 0 && iter == index)
-                    head = head->next;
-
-                prev->next = temp->next;
-                delete temp;
-                temp = nullptr;
-
-                return;
+                end = head;
+                head = head->next;
             }
-            prev = temp;
-            temp = temp->next;
-
-            iter++;
+            return &end->value;
         }
+        return nullptr;
+    }
+
+    bool empty()
+    {
+        if(head)
+            return false;
+
+        return true;
     }
 
 private:
